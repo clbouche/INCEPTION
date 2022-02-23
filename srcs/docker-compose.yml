@@ -6,23 +6,39 @@ services:
     container_name: "nginx"
     ports:
       -  "443:443"
+    depends_on:
+      - wordpress
     volumes:
       - wp_vol:/var/www/html
     networks:
       - inception
-#    restart: on_failure
+    restart: on-failure
 
   wordpress:
     build: ./requirements/wordpress
     container_name: "wordpress"
     ports:
       - "127.0.0.1:9000:9000"
+    depends_on:
+      - mariadb
     volumes:
       - wp_vol:/var/www/html
     networks:
       - inception
-#    restart: on_failure
+    restart: on-failure
 
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: "mariadb"
+    env_file:
+      - ./.env
+    ports: 
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - db_vol:/var/lib/mysql
+    networks:
+      - inception
+    restart: on-failure
 
 networks:
   inception:
@@ -33,4 +49,11 @@ volumes:
     driver_opts:
       type: none
       device: /home/clbouche/data/wp_vol
+      o: bind
+  
+  db_vol:
+    driver: local
+    driver_opts:
+      type: none
+      device : /home/clbouche/data/db_vol
       o: bind
