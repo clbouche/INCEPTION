@@ -7,7 +7,7 @@ RUN apt-get update && \
 	mkdir -p /var/run/mysqld; mkdir -p /run/mysqld && \
 	chown -R mysql:root /var/run/mysqld
 
-COPY script.sh /root/script.sh
-COPY 50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf 
+COPY ./conf/script.sh /root/conf/script.sh
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf 
 
-CMD ["bash", "/root/script.sh"]
+CMD ["bash", "/root/conf/script.sh"]
