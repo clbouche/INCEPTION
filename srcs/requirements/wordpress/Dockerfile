@@ -13,9 +13,9 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 	mv wp-cli.phar /usr/local/bin/wp
 
 COPY ./conf/www.conf	/etc/php/7.3/fpm/pool.d/www.conf
-COPY ./conf/script.sh /root/script.sh
+COPY ./conf/script.sh	.
 
 RUN ln -sf /dev/stdout /var/log/php7.3-fpm.access.log \
     && ln -sf /dev/stderr /var/log/php7.3-fpm.log
 
-CMD bash /root/script.sh 
+CMD bash script.sh

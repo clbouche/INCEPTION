@@ -12,7 +12,7 @@ down:
 	@ docker-compose -f ./srcs/docker-compose.yml down
 
 clean: down
-	@ cd $(SRCS) && docker container prune; 
+	@ docker container prune; 
 
 fclean: clean
 	@ sudo rm -rf /home/clbouche/data/wp_vol
