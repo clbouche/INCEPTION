@@ -74,13 +74,33 @@ Pour chacun de nos services, on aura besoin d'un Dockerfile. Normalement, on a v
 
 ---
 
-1. WORDPRESS
+<h1 align=center> 
+<img width="504" alt="Capture d’écran 2022-03-07 à 15 07 55" src="https://user-images.githubusercontent.com/57404773/157049642-99d4c639-53dc-430f-99be-2883d384ede9.png">  </h1>   
 
+ 
+1. NGINX  
+  
+On va aller chercher le fichier de configuration de base (nginx.conf) puis le copier dans nos fichiers de configuration pour l'adapter à nos besoins : 
+	- On sait qu'on doit écouter sur le port 443 donc on configure notre fichier pour écouter sur le port 443. 
+	- On devra donc spécifié un protocole SSL et configurer les clés. 
 	
 2. MARIADB
 
+	On aura besoin d'une jolie MariaDB pour faire fonctionner notre Wordpress. Oui, car Wordpress a besoin d'un gestionnaire de base de données. On commence par faire comme avec Nginx. On va chercher le fichier de configuration de base de MariaDB (50-server.cnf), on le copie dans nos fichiers et on adapte le tout à nos besoins : 
+	- Ici, on a besoin que MariaDB communique avec Wordpress alors on modifie "bind-adress" (127.0.0.1 devient 0.0.0.0)
+	- et bien je crois que c'est tout pour la config.  
 	
-3. NGINX  
+	On poursuit en remplissant notre base de données grâce à un petit script. Les spécificités de ce script : 
+	- % 
+	- les guillemets 
+	- les droits
+	- le minimum pour faire fonctionne la DB 
+
+	
+3. WORDPRESS
+On est presque au bouuuuut ! C'est l'étape finale pour obtenir notre page web 🎉 
+
+	
 
 
 
@@ -95,6 +115,8 @@ Pour chacun de nos services, on aura besoin d'un Dockerfile. Normalement, on a v
 - https://blog.ippon.fr/2014/10/20/docker-pour-les-nu-pour-les-debutants/  → pour se remettre dans le bain après un ft_server qui
 date d'il y a 1 an. 
 - https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and-mysql-with-docker-compose → un super tuto qui reprends les grandes lignes du projet (installation nginx, variables d'environnement, le fichier docker-compose.yml, le volume, etc..) 
+- https://www.digitalocean.com/community/tutorials/understanding-and-implementing-fastcgi-proxying-in-nginx → pour faire la partie PHP-FPM 
+- https://www.adsysteme.com/lacces-a-distance-aux-bases-de-donnees-mysql-mariadb/ → accès à distance de MariaDB
 ---
 ### 🎉 Final Grade 🎉 
 Et bien je n'ai pas encore validé le projet mais je vous tiens au courant.
