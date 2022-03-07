@@ -1,9 +1,7 @@
-<h1 align=center>
-	<b> INCEPTION - 42</b>
-</h1>
-
-
-
+<h1 align=center> <b> INCEPTION - 42</b> </h1> 
+  
+  
+  
 ## Sujet 
 
 → Le sujet nous dit : "Ce projet vise à élargir vos connaissances en matière d'administration système en utilisant Docker.
