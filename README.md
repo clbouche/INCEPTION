@@ -61,10 +61,10 @@ connecter tous ensemble.
 	
 ### Notions de bases :  
 
-Pour faire ce petit setup, je vais détailler 3 notions qui vont nous servir pour la suite: 
-	- une image docker = modèle en lecture seule qui contient toutes les instructions pour créer un conteneur qui fonctionnera avec Docker.
-	- un volume docker = permet de faire communiquer les conteneurs partageant le même volume. Les données de chacun conteneur vont perdurer et les fichiers seront partagés. 
-	- réseau = permet la communication entre les conteneurs. Il sera précisé dans le docker-compose.yml pour pouvoir le spécifié ensuite dans les conteneurs concernés. 
+Pour faire ce petit setup, je vais détailler 3 notions qui vont nous servir pour la suite:   
+* une image docker = modèle en lecture seule qui contient toutes les instructions pour créer un conteneur qui fonctionnera avec Docker.   
+* un volume docker = permet de faire communiquer les conteneurs partageant le même volume. Les données de chacun conteneur vont perdurer et les fichiers seront partagés.     
+* réseau = permet la communication entre les conteneurs. Il sera précisé dans le docker-compose.yml pour pouvoir le spécifié ensuite dans les conteneurs concernés.     
 	
 ### Nos services : 
 
@@ -85,35 +85,34 @@ Pour chacun de nos services, on aura besoin d'un Dockerfile. Normalement, on a v
 1. NGINX  
   
 On va aller chercher le fichier de configuration de base (nginx.conf) puis le copier dans nos fichiers de configuration pour l'adapter à nos besoins : 
-	- On sait qu'on doit écouter sur le port 443 donc on configure notre fichier pour écouter sur le port 443. 
-	- On devra donc spécifié un protocole SSL et configurer les clés. 
+* On sait qu'on doit écouter sur le port 443 donc on configure notre fichier pour écouter sur le port 443. 
+* On devra donc spécifié un protocole SSL et configurer les clés. 
 	
 2. MARIADB
 
-	On aura besoin d'une jolie MariaDB pour faire fonctionner notre Wordpress. Oui, car Wordpress a besoin d'un gestionnaire de base de données. On commence par faire comme avec Nginx. On va chercher le fichier de configuration de base de MariaDB (50-server.cnf), on le copie dans nos fichiers et on adapte le tout à nos besoins : 
-	- Ici, on a besoin que MariaDB communique avec Wordpress alors on modifie "bind-adress" (127.0.0.1 devient 0.0.0.0)
-	- et bien je crois que c'est tout pour la config.  
+On aura besoin d'une jolie MariaDB pour faire fonctionner notre Wordpress. Oui, car Wordpress a besoin d'un gestionnaire de base de données. On commence par faire comme avec Nginx. On va chercher le fichier de configuration de base de MariaDB (50-server.cnf), on le copie dans nos fichiers et on adapte le tout à nos besoins : 
+* Ici, on a besoin que MariaDB communique avec Wordpress alors on modifie "bind-adress" (127.0.0.1 devient 0.0.0.0)
+* et bien je crois que c'est tout pour la config.  
 	
-	On poursuit en remplissant notre base de données grâce à un petit script. Les spécificités de ce script : 
-	- % 
-	- les guillemets 
-	- les droits
-	- le minimum pour faire fonctionne la DB 
+On poursuit en remplissant notre base de données grâce à un petit script. Les spécificités de ce script : 
+* % 
+* les guillemets 
+* les droits
+* le minimum pour faire fonctionne la DB 
 
 	
 3. WORDPRESS
+  
 On est presque au bouuuuut ! C'est l'étape finale pour obtenir notre page web 🎉 
 
 	
 
-
-
-#### Commandes
-
   
 ---
-## Notes
-
+## Notes    
+    
+    
+    
 ---
 ## Ressources
 - https://blog.ippon.fr/2014/10/20/docker-pour-les-nu-pour-les-debutants/  → pour se remettre dans le bain après un ft_server qui
