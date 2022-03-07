@@ -30,7 +30,11 @@ Mais globalement, on trouve rapidement un grand avantage à l'utilisation de Doc
 	- Ce qui suit naturellement la première information : lancement plus rapide. 
 	- Un autre bel avantage : docker permet un déploiement directement d'un environnement de dévéloppement à un environnement 
 		de production. 
-	- Ce qui suit naturellement l'info ci dessus : moins de surprise au déploiement. 
+	- Ce qui suit naturellement l'info ci dessus : moins de surprise au déploiement.    
+	    
+	    
+	    
+	  
 Un bel exemple de l'utilité de Docker : 3 personnes souhaitant créer une même appli mais utilisant 3 OS différents. 
 Solution : Docker. On construit et distribue un ensemble d'applications pré-configurés pour le projet et hop tout le monde 
 bosse avec le même environnement. 
