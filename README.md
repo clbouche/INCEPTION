@@ -50,19 +50,41 @@ connecter tous ensemble.
 
 ---
 ## Plan du projet
-  	On va créer un site Wordpress, un CMS écrit en PHP et qui utilise mySQL comme base de données. MariaDB étant un fork de MySQL, on l'utilisera donc ici. Il nous faudra également un serveur Web, ici Nginx. 
-  
-#### WORDPRESS
+  	On va créer un Wordpress, un CMS écrit en PHP et qui utilise mySQL comme base de données. 
+	MariaDB étant un fork de MySQL, on l'utilisera donc ici. Il nous faudra également un serveur Web, ici Nginx. 
+	
 
 	
-#### MARIADB
+### Notions de bases :  
+
+Pour faire ce petit setup, je vais détailler 3 notions qui vont nous servir pour la suite: 
+	- une image docker = modèle en lecture seule qui contient toutes les instructions pour créer un conteneur qui fonctionnera avec Docker.
+	- un volume docker = permet de faire communiquer les conteneurs partageant le même volume. Les données de chacun conteneur vont perdurer et les fichiers seront partagés. 
+	- réseau = permet la communication entre les conteneurs. Il sera précisé dans le docker-compose.yml pour pouvoir le spécifié ensuite dans les conteneurs concernés. 
+	
+### Nos services : 
+
+#### Dockerfile 
+Pour chacun de nos services, on aura besoin d'un Dockerfile. Normalement, on a vu ça avec ft_server. Mais voici les quelques règles de bases à définir dans un Dockerfile pour chaque service : 
+* définition de la distribution (ici, debian:buster). 
+* installation et MAJ des services.   
+* configuration, on va récupérer les fichiers de configuration par défaut et les adapter à nos besoins.  
+* exposition des ports ( 3306 pour mariadb, 443 pour nginx, et 9000 pour wordpress ). 
+* exécution   
+
+---
+
+1. WORDPRESS
 
 	
-#### NGINX  
+2. MARIADB
+
+	
+3. NGINX  
 
 
 
-
+#### Commandes
 
   
 ---
@@ -72,7 +94,7 @@ connecter tous ensemble.
 ## Ressources
 - https://blog.ippon.fr/2014/10/20/docker-pour-les-nu-pour-les-debutants/  → pour se remettre dans le bain après un ft_server qui
 date d'il y a 1 an. 
-- 
+- https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and-mysql-with-docker-compose → un super tuto qui reprends les grandes lignes du projet (installation nginx, variables d'environnement, le fichier docker-compose.yml, le volume, etc..) 
 ---
 ### 🎉 Final Grade 🎉 
 Et bien je n'ai pas encore validé le projet mais je vous tiens au courant.
