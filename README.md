@@ -1,6 +1,21 @@
 <h1 align=center> INCEPTION - 42 </h1>   
   
-  
+### Sommaire
+
+- [Sujet](Sujet)
+- [Notions de bases](Notion de bases)
+	- [1.Docker](DOCKER)
+	- [2. Docker VS VM](DOCKER_VS_VM)
+	- [3.Docker compose](DOCKER_COMPOSE) 
+- [Plan du projet](Plan_du_projet)
+	- [Notions](Notions)
+	- [Nos services](Nos_services)
+		- [1. Nginx](NGINX)
+		- [2.MariaDB](MARIADB)
+		- [3.Wordpress](WORDPRESS)
+- [Notes](Notes)
+- [Ressources](Ressources)
+ 
   
 ## Sujet   
   
@@ -59,7 +74,7 @@ connecter tous ensemble.
 	
 
 	
-### Notions de bases :  
+### Notions :  
 
 Pour faire ce petit setup, je vais détailler 3 notions qui vont nous servir pour la suite:   
 * une image docker = modèle en lecture seule qui contient toutes les instructions pour créer un conteneur qui fonctionnera avec Docker.   
