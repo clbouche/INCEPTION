@@ -87,6 +87,49 @@ Pour chacun de nos services, on aura besoin d'un Dockerfile. Normalement, on a v
 On va aller chercher le fichier de configuration de base (nginx.conf) puis le copier dans nos fichiers de configuration pour l'adapter à nos besoins : 
 * On sait qu'on doit écouter sur le port 443 donc on configure notre fichier pour écouter sur le port 443. 
 * On devra donc spécifié un protocole SSL et configurer les clés. 
+* On va setup pour que Nginx puisse gérer php.
+
+```
+user                    www-data; # Utilisateur qui fera tourner le processus NGINX 
+error_log                /var/log/nginx/error.log info; # Où NGINX doit enregistrer les logs d'erreurs
+
+events {
+    worker_connections 768; 
+    # multi_accept on;
+}
+
+http {
+    access_log                    /var/log/nginx/access.log; # Où NGINX doit enregistrer les logs d'accès 
+
+    include                        /etc/nginx/mime.types; # Permets à NGINX de détecter le type de fichier demandé ou à envoyer (on ne gère pas de la même manière un fichier et une image)
+    default_type                application/octet-stream; # Format de fichier par défaut
+    sendfile                    on; #trucs de bases
+    keepalive_timeout            65; #trucs de bases
+
+    server {
+        listen                    443 ssl http2; #pour pouvoir être en HTTPS 
+
+        root                    /var/www/html; # Dossier où se trouve mon site web 
+        index                    index.html index.htm index.php index.nginx-debian.html; # Pages par défaut à charger si rien n'est demandé. 
+        server_name                localhost clbouche.42.fr; # Nom aux quels doit "répondre" NGINX
+
+# Lorsque NGINX tombe sur une page terminant par `.php`, il doit faire les insctructions suivante :
+        location ~ \.php$ { 
+            try_files $uri =404; #si la page n'existe pas
+            fastcgi_pass wordpress:9000; # Envoyer la page à ce serveur et attendre la réponse 
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; 
+            include fastcgi_params;
+        }
+
+#protocole SSL
+        ssl_certificate                 /etc/ssl/certs/server.crt; 
+        ssl_certificate_key            /etc/ssl/private/server.key;
+        ssl_protocols                TLSv1.2 TLSv1.3;
+    }
+}
+```
+
 	
 2. MARIADB
 
@@ -134,7 +177,7 @@ Dans le service wordpress :
       - mariadb
 ```
 
-Grace a cette regle, docker-compose va démarrer les services dans l'ordre des dépendances.
+Grace a cette regle, docker-compose va démarrer les services dans l'ordre des dépendances. Également, un service qui depend d'un autre ne pourra donc pas etre lancé seul, si wordpress depends de mariadb, mariadb sera lancé puis wordpress à son tour. 
 
 2. Sleep
     Cependant, la regle précedente ne suffit pas. On va avoir besoin d'attendre que l'installation de chaque service se fasse pour passé au suivant. Pour ca, on utilise le talent d'[Arthur](https://github.com/arthur-trt) et on precise dans notre script :
