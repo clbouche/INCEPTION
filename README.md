@@ -30,13 +30,13 @@ Allez, c'est parti !
 
 ---
 ## Notions de bases : 
-# 1. DOCKER :   
+###### 1. DOCKER :   
 
 
  	On va partir sur une définition plutôt imagée : tu vois un conteneur dans la vraie vie pour transporter des trucs ?
  Ben tout pareil, mais niveau logiciel. 
  
-# 2. DOCKER VS VM :  
+###### 2. DOCKER VS VM :  
 
 
 	Le grand débat se joue surtout là (apparemment, c'est pas moi qui le dis, comme t'as compris je suis pas une experte). 
@@ -55,7 +55,7 @@ Solution : Docker. On construit et distribue un ensemble d'applications pré-con
 bosse avec le même environnement. 
 
 
-# 3. DOCKER COMPOSE : 
+###### 3. DOCKER COMPOSE : 
 
 
 	L'outil magique qui permet de décrire et gérer plusieurs conteneurs pour créer un ensembles de services inter-connectés. 
