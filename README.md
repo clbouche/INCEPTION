@@ -9,7 +9,7 @@
 	utilisant Docker. Vous allez virtualiser plusieurs images Docker, en les créant dans votre nouvelle machine
 	virtuelle personnelle. " 
 	
-Et cette "élargissement" de mes connaissances à Docker à été ENORMEMENT faciliter par le talentueux [Arthur](https://github.com/arthur-trt?tab=repositories) ! 
+Et cette "élargissement" de mes connaissances à Docker à été ENORMEMENT facilité par le talentueux [Arthur](https://github.com/arthur-trt?tab=repositories) ! 
 (il adore Docker (oui, il est bizarre) mais en tout cas il m'a bien servi).  
 Allez, c'est parti !
 
