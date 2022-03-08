@@ -148,8 +148,8 @@ On poursuit en remplissant notre base de données grâce à un petit script. Les
   
 On est presque au bouuuuut ! C'est l'étape finale pour obtenir notre page web 🎉 
 
-L'idée générale de cette étape est de configurer wordpress et de créer une base de données pour que Wordpress puisse fonctionner. 
-On va donc créer un script pour remplir notre jolie base de données. On lui donne un admin, un utilisateur et un theme. 
+L'idée générale de cette étape est de configurer wordpress (étonnant).
+On va donc créer un script pour remplir notre jolie base de données pour que Wordpress puisse fonctionner. On lui donne un admin, un utilisateur et un theme. 
 
 ```
 wp core download # telechargement de wordpress
