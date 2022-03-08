@@ -54,7 +54,7 @@ connecter tous ensemble.
 
 ---
 ## Plan du projet
-  	On va créer un Wordpress, un CMS écrit en PHP et qui utilise mySQL comme base de données. 
+  	On va créer un Wordpress, un CMS écrit en PHP qui utilise mySQL comme base de données. 
 	MariaDB étant un fork de MySQL, on l'utilisera donc ici. Il nous faudra également un serveur Web, ici Nginx. 
 	
 
@@ -98,7 +98,7 @@ On poursuit en remplissant notre base de données grâce à un petit script. Les
 * % 
 * les guillemets 
 * les droits
-* le minimum pour faire fonctionne la DB 
+* le minimum pour faire fonctionner la DB 
 
 	
 3. WORDPRESS
@@ -137,13 +137,15 @@ Dans le service wordpress :
 Grace a cette regle, docker-compose va démarrer les services dans l'ordre des dépendances.
 
 2. Sleep
-    Cependant, la regle précedente ne suffit pas. On va avoir besoin d'attendre que l'installation de chaque service se fasse pour passé au suivant. Pour ca, on utilise le talent d'[Arthur](https://github.com/arthur-trt) et on precise dans notre script 
+    Cependant, la regle précedente ne suffit pas. On va avoir besoin d'attendre que l'installation de chaque service se fasse pour passé au suivant. Pour ca, on utilise le talent d'[Arthur](https://github.com/arthur-trt) et on precise dans notre script :
     
 ```
 	until mysqladmin -hmariadb -u${DB_USER} -p${DB_USER_PASSWORD} ping; do 
         sleep 2 #fais dodo tant que mariadb n'est pas fonctionnel
     done
 ```
+
+Voilà, finito bambino ! 
     
 ---
 ## Ressources
