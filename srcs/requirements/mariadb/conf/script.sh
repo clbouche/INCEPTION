@@ -11,6 +11,7 @@ if [ ! -d /var/lib/mysql/${DB_WORDPRESS} ]; then
     mysql -u root -e "GRANT ALL ON *.* TO '${ADMIN}'@'%';"
     mysql -u root -e "CREATE USER '${DB_USER}'@'%' IDENTIFIED BY '${DB_USER_PASSWORD}';"
     mysql -u root -e "GRANT ALL ON ${DB_WORDPRESS}.* TO '${DB_USER}'@'%';"
+    mysql -u root -e "DELETE FROM mysql.user WHERE user='root';" 
     mysql -u root -e "FLUSH PRIVILEGES;"
     killall mysqld
     echo "End first run"
