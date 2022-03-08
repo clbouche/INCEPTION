@@ -4,9 +4,9 @@
 
 - [Sujet](#Sujet)
 - [Notions de bases](#Notions-de-bases)
-	- [1.Docker](#DOCKER)
-	- [2. Docker VS VM](#DOCKER_VS_VM)
-	- [3.Docker compose](#DOCKER_COMPOSE) 
+	- [1.Docker](#1.-DOCKER)
+	- [2. Docker VS VM](#2.-DOCKER_VS_VM)
+	- [3.Docker compose](#3.-DOCKER_COMPOSE) 
 - [Plan du projet](#Plan-du-projet)
 	- [Notions](#Notions)
 	- [Nos services](#Nos_services)
