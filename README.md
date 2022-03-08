@@ -105,21 +105,54 @@ On poursuit en remplissant notre base de données grâce à un petit script. Les
   
 On est presque au bouuuuut ! C'est l'étape finale pour obtenir notre page web 🎉 
 
-	
+L'idée générale de cette étape est de configurer wordpress et de créer une base de données pour que Wordpress puisse fonctionner. 
+On va donc créer un script pour remplir notre jolie base de données. On lui donne un admin, un utilisateur et un theme. 
 
-  
+```
+wp core download # telechargement de wordpress
+wp config create --dbname=<db_name> --dbuser=<db_user> --dbpass=<db_pass> --dbhost=<mariadb_host> --dbcharset="utf8" --dbcollate="utf8_general_ci" # configuration de la DB
+wp core install --url=<login.42.fr>/wordpress --title=<titre_site> --admin_user=<admin_username> --admin_password=<admin_pass> --admin_email=<admin_mail> --skip-email #Configuration du site et de l'admin
+wp user create <wp_user> <wp_mail> --role=author --user_pass=<wp_user_pass> #Configuration de l'utilisateur 
+wp theme install <theme_name> --activate #Installation du theme
+```
 ---
 ## Notes    
     
+Pour que tout ce petit monde fonctionne correctement on a besoin de specifier 2/3 éléments pour l'interdépendance des services. 
+
+1. Depends on
+	Si vous lisez bien le docker-compose.yml, on y trouve 2 petites lignes : 
+- dans le service nginx :
+```
+    depends_on:
+      - wordpress
+```
+
+Dans le service wordpress :
+```
+    depends_on:
+      - mariadb
+```
+
+Grace a cette regle, docker-compose va démarrer les services dans l'ordre des dépendances.
+
+2. Sleep
+    Cependant, la regle précedente ne suffit pas. On va avoir besoin d'attendre que l'installation de chaque service se fasse pour passé au suivant. Pour ca, on utilise le talent d'[Arthur](https://github.com/arthur-trt) et on precise dans notre script 
     
+```
+	until mysqladmin -hmariadb -u${DB_USER} -p${DB_USER_PASSWORD} ping; do 
+        sleep 2 #fais dodo tant que mariadb n'est pas fonctionnel
+    done
+```
     
 ---
 ## Ressources
-- https://blog.ippon.fr/2014/10/20/docker-pour-les-nu-pour-les-debutants/  → pour se remettre dans le bain après un ft_server qui
-date d'il y a 1 an. 
-- https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and-mysql-with-docker-compose → un super tuto qui reprends les grandes lignes du projet (installation nginx, variables d'environnement, le fichier docker-compose.yml, le volume, etc..) 
-- https://www.digitalocean.com/community/tutorials/understanding-and-implementing-fastcgi-proxying-in-nginx → pour faire la partie PHP-FPM 
-- https://www.adsysteme.com/lacces-a-distance-aux-bases-de-donnees-mysql-mariadb/ → accès à distance de MariaDB
+- [pour se remettre dans le bain après un ft_server qui date d'il y a 1 an ](https://blog.ippon.fr/2014/10/20/docker-pour-les-nu-pour-les-debutants/) 
+- [un super tuto qui reprends les grandes lignes du projet (installation nginx, variables d'environnement, le fichier docker-compose.yml, le volume, etc..) ](https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and-mysql-with-docker-compose)
+- [pour faire la partie PHP-FPM ](https://www.digitalocean.com/community/tutorials/understanding-and-implementing-fastcgi-proxying-in-nginx)
+- [accès à distance de MariaDB](https://www.adsysteme.com/lacces-a-distance-aux-bases-de-donnees-mysql-mariadb/)
+- [installation de wordpress](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04)
+- [readme sympatoche](https://github.com/Ccommiss/inception/blob/main/allyouneed.md)
 ---
 ### 🎉 Final Grade 🎉 
 Et bien je n'ai pas encore validé le projet mais je vous tiens au courant.
