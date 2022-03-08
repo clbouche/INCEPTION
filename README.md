@@ -29,7 +29,7 @@ Et cette "élargissement" de mes connaissances à Docker à été ENORMEMENT fac
 Allez, c'est parti !
 
 ---
-## Notion de bases : 
+## Notions de bases : 
 1. DOCKER :   
 
 
