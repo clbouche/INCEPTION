@@ -161,7 +161,7 @@ wp theme install <theme_name> --activate #Installation du theme
     
 Pour que tout ce petit monde fonctionne correctement on a besoin de specifier 2/3 éléments pour l'interdépendance des services. 
 
-1. Depends on
+1. Depends on     
 	Si vous lisez bien le docker-compose.yml, on y trouve 2 petites lignes : 
 - dans le service nginx :
 ```
@@ -177,7 +177,7 @@ Dans le service wordpress :
 
 Grace a cette regle, docker-compose va démarrer les services dans l'ordre des dépendances. Également, un service qui depend d'un autre ne pourra donc pas etre lancé seul, si wordpress depends de mariadb, mariadb sera lancé puis wordpress à son tour. 
 
-2. Sleep
+2. Sleep     
     Cependant, la regle précedente ne suffit pas. On va avoir besoin d'attendre que l'installation de chaque service se fasse pour passé au suivant. Pour ca, on utilise le talent d'[Arthur](https://github.com/arthur-trt) et on precise dans notre script :
     
 ```
@@ -197,8 +197,9 @@ Voilà, finito bambino !
 - [installation de wordpress](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04)
 - [readme sympatoche](https://github.com/Ccommiss/inception/blob/main/allyouneed.md)
 ---
-### 🎉 Final Grade 🎉 
-Et bien je n'ai pas encore validé le projet mais je vous tiens au courant.
+### 🎉 Final Grade 🎉    
+
+100/100 
 
 --- 
 🍄 ENJOY 🍄
